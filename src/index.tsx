@@ -1,14 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React, { memo } from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import { Root } from "./Root";
+import * as serviceWorker from "./serviceWorker";
+import { useSink } from "./utils/utils";
+
+const apiURL = "/api";
+
+const Index = memo(() => {
+  const ResolvedRoot = useSink(() => Root({ apiURL }), []);
+  return <ResolvedRoot />;
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Index />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
